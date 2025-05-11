@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "smartstudy",
+    "slug": "smartstudy",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F0FBFF"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.maheshwaran777.smartstudy"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F0FBFF"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.maheshwaran777.smartstudy"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
