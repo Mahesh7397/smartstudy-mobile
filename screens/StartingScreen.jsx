@@ -1,12 +1,17 @@
-import { Image, SafeAreaView, StyleSheet, Text, View, Animated, Dimensions } from 'react-native'
+import { Image, SafeAreaView, StyleSheet, Text, View, Animated, Dimensions, Pressable } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { useThemescontext } from '../context/ThemeContext'
 import { Fonts } from '../constants/Fonts'
-import { useTypewriter } from '../context/useTypingEffect';
+import { useTypewriter } from '../hooks/useTypingEffect';
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
+import Fontisto from '@expo/vector-icons/Fontisto';
+import { useAccountContext } from '../context/AccountContext';
+
 
 const { width } = Dimensions.get('window');
-const StartingScreen = () => {
+
+
+const StartingScreen = ({ navigation }) => {
 
     const { theme } = useThemescontext()
     const typedText = useTypewriter(
@@ -16,6 +21,7 @@ const StartingScreen = () => {
         { speed: 100, pause: 1500, loop: true }
     );
 
+    const { onGoogleButtonPress } = useAccountContext()
     const opacity = useRef(new Animated.Value(1)).current;
 
     useEffect(() => {
@@ -49,16 +55,20 @@ const StartingScreen = () => {
                 <Text style={{ color: '#0021FF', fontSize: RFValue(22), fontFamily: Fonts.poppins.Bold }}>{typedText} <Animated.Text style={[styles.cursor, { opacity: 0.5 }]}>|</Animated.Text></Text>
             </View>
             <View style={styles.box_3}>
-                <View style={styles.google_login}>
+                <Pressable style={styles.google_login} onPress={() => onGoogleButtonPress()}>
                     <Image source={require('../assets/images/Logo/Google.png')} style={styles.google_image} resizeMode='cover' />
                     <Text style={{ color: '#000000', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '800', textAlign: 'center', paddingHorizontal: 4 }}>Continue with Google</Text>
-                </View>
-                <View style={styles.email_login}>
-                    
-                </View>
+                </Pressable>
+                <Pressable style={[styles.email_login, { borderColor: theme.colors.text }]} onPress={() => console.log('hii')}>
+                    <Fontisto name="email" size={24} color="#ffffff" style={{ paddingHorizontal: 4 }} />
+                    <Text style={{ color: '#ffffff', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '800', textAlign: 'center', paddingHorizontal: 4 }}>Continue with Email</Text>
+                </Pressable>
+                <Pressable style={{ padding: 3, margin: 3 }} onPress={() => console.log('hii')}>
+                    <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '500', textAlign: 'center' }}>I already have an account </Text>
+                </Pressable>
             </View>
             <View style={styles.box_4}>
-
+                <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontWeight: '400', fontSize: RFValue(12), textAlign: 'center', padding: 2, margin: 2 }}>By signing up, you agree to the Terms and Conditions and the Privacy Policy of Smart Study</Text>
             </View>
         </SafeAreaView>
     )
@@ -91,9 +101,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     box_4: {
-        height: '15%',
-        backgroundColor: 'plum',
-        width: '100%'
+        height: '10%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     logo_image: {
         width: width * 0.25,
@@ -119,11 +130,21 @@ const styles = StyleSheet.create({
         width: '85%',
         height: 46,
         borderWidth: 1,
-        borderColor:'rgba(83, 83, 83, 0.34)',
+        borderColor: 'rgba(83, 83, 83, 0.34)',
         borderRadius: 20,
-        
+        marginVertical: 8,
+        backgroundColor: '#ffffff'
     },
     email_login: {
-
+        marginVertical: 8,
+        backgroundColor: '#0f0f0f',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        flexDirection: 'row',
+        width: '85%',
+        height: 46,
+        borderWidth: 1,
+        borderRadius: 20,
     }
 })
