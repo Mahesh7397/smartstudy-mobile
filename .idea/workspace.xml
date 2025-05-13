@@ -7,12 +7,12 @@
     <list default="true" id="7281705b-7af7-4196-906f-acddcee79253" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/context/LoginContext.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/context/useTypingEffect.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/maheshwaran777/smartstudy/MainApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/maheshwaran777/smartstudy/MainApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/context/AccountContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/context/AccountContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/context/SupplayContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/context/SupplayContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/StartScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StartScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/SignupScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SignupScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/StartingScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/StartingScreen.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

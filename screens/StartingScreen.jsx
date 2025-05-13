@@ -5,13 +5,14 @@ import { Fonts } from '../constants/Fonts'
 import { useTypewriter } from '../hooks/useTypingEffect';
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 import Fontisto from '@expo/vector-icons/Fontisto';
-import { useAccountContext } from '../context/AccountContext';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleAuthProvider, getAuth, signInWithCredential } from '@react-native-firebase/auth';
 
 
 const { width } = Dimensions.get('window');
 
 
-const StartingScreen = ({ navigation }) => {
+const StartingScreen = ({view,setview}) => {
 
     const { theme } = useThemescontext()
     const typedText = useTypewriter(
@@ -21,7 +22,36 @@ const StartingScreen = ({ navigation }) => {
         { speed: 100, pause: 1500, loop: true }
     );
 
-    const { onGoogleButtonPress } = useAccountContext()
+            const onGoogleButtonPress = async () => {
+                try {
+                    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+                    const signInResult = await GoogleSignin.signIn();
+                    idToken = signInResult.data?.idToken;
+                    if (!idToken) {
+                        idToken = signInResult.idToken;
+                    }
+                    if (!idToken) {
+                        throw new Error('No ID token found');
+                    }
+                    console.log(idToken)
+                    console.log(signInResult.data)
+                    const googleCredential = GoogleAuthProvider.credential(signInResult.data.idToken);
+                    return signInWithCredential(getAuth(), googleCredential);
+                }
+        
+                catch (error) {
+                    console.log(error)
+                }
+            }
+            
+    
+        
+        useEffect(() => {
+            GoogleSignin.configure({
+                webClientId: '486980675643-antjebufos64bv8837on6ctmufe7afh9.apps.googleusercontent.com',
+            });
+        }, [])
+
     const opacity = useRef(new Animated.Value(1)).current;
 
     useEffect(() => {
@@ -59,11 +89,11 @@ const StartingScreen = ({ navigation }) => {
                     <Image source={require('../assets/images/Logo/Google.png')} style={styles.google_image} resizeMode='cover' />
                     <Text style={{ color: '#000000', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '800', textAlign: 'center', paddingHorizontal: 4 }}>Continue with Google</Text>
                 </Pressable>
-                <Pressable style={[styles.email_login, { borderColor: theme.colors.text }]} onPress={() => console.log('hii')}>
+                <Pressable style={[styles.email_login, { borderColor: theme.colors.text }]} onPress={()=>setview()}>
                     <Fontisto name="email" size={24} color="#ffffff" style={{ paddingHorizontal: 4 }} />
                     <Text style={{ color: '#ffffff', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '800', textAlign: 'center', paddingHorizontal: 4 }}>Continue with Email</Text>
                 </Pressable>
-                <Pressable style={{ padding: 3, margin: 3 }} onPress={() => console.log('hii')}>
+                <Pressable style={{ padding: 3, margin: 3 }} onPress={() => navigation.navigate('login')}>
                     <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '500', textAlign: 'center' }}>I already have an account </Text>
                 </Pressable>
             </View>

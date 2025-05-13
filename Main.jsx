@@ -9,7 +9,7 @@ const Main = () => {
   const {fontsloading}=useFontsContext()
 
   return (
-    <>{fontsloading?<Loading/>:<StartScreen/>}
+    <>{false?<Loading/>:<StartScreen/>}
     </>
   )
 }

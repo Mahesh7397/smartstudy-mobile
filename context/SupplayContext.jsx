@@ -1,13 +1,14 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext, useState } from "react"
 
 
 const SupplayContext=createContext()
 
 export const SupplayProvider=({Children})=>{
 
+    const [add,setadd]=useState({})
 
    return(
-       <SupplayContext.Provider value={{}}>
+       <SupplayContext.Provider value={{ add , setadd}}>
         {Children}
        </SupplayContext.Provider>
    )
