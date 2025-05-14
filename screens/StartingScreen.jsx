@@ -12,7 +12,7 @@ import { GoogleAuthProvider, getAuth, signInWithCredential } from '@react-native
 const { width } = Dimensions.get('window');
 
 
-const StartingScreen = ({view,setview}) => {
+const StartingScreen = ({ view, setview, setviewlogin }) => {
 
     const { theme } = useThemescontext()
     const typedText = useTypewriter(
@@ -22,35 +22,35 @@ const StartingScreen = ({view,setview}) => {
         { speed: 100, pause: 1500, loop: true }
     );
 
-            const onGoogleButtonPress = async () => {
-                try {
-                    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-                    const signInResult = await GoogleSignin.signIn();
-                    idToken = signInResult.data?.idToken;
-                    if (!idToken) {
-                        idToken = signInResult.idToken;
-                    }
-                    if (!idToken) {
-                        throw new Error('No ID token found');
-                    }
-                    console.log(idToken)
-                    console.log(signInResult.data)
-                    const googleCredential = GoogleAuthProvider.credential(signInResult.data.idToken);
-                    return signInWithCredential(getAuth(), googleCredential);
-                }
-        
-                catch (error) {
-                    console.log(error)
-                }
+    const onGoogleButtonPress = async () => {
+        try {
+            await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+            const signInResult = await GoogleSignin.signIn();
+            idToken = signInResult.data?.idToken;
+            if (!idToken) {
+                idToken = signInResult.idToken;
             }
-            
-    
-        
-        useEffect(() => {
-            GoogleSignin.configure({
-                webClientId: '486980675643-antjebufos64bv8837on6ctmufe7afh9.apps.googleusercontent.com',
-            });
-        }, [])
+            if (!idToken) {
+                throw new Error('No ID token found');
+            }
+            console.log(idToken)
+            console.log(signInResult.data)
+            const googleCredential = GoogleAuthProvider.credential(signInResult.data.idToken);
+            return signInWithCredential(getAuth(), googleCredential);
+        }
+
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
+    useEffect(() => {
+        GoogleSignin.configure({
+            webClientId: '486980675643-antjebufos64bv8837on6ctmufe7afh9.apps.googleusercontent.com',
+        });
+    }, [])
 
     const opacity = useRef(new Animated.Value(1)).current;
 
@@ -89,16 +89,16 @@ const StartingScreen = ({view,setview}) => {
                     <Image source={require('../assets/images/Logo/Google.png')} style={styles.google_image} resizeMode='cover' />
                     <Text style={{ color: '#000000', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '800', textAlign: 'center', paddingHorizontal: 4 }}>Continue with Google</Text>
                 </Pressable>
-                <Pressable style={[styles.email_login, { borderColor: theme.colors.text }]} onPress={()=>setview()}>
-                    <Fontisto name="email" size={24} color="#ffffff" style={{ paddingHorizontal: 4 }} />
-                    <Text style={{ color: '#ffffff', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '800', textAlign: 'center', paddingHorizontal: 4 }}>Continue with Email</Text>
+                <Pressable style={[styles.email_login, { borderColor: theme.colors.text }]} onPress={() => setview()}>
+                    <Fontisto name="email" size={20} color="#ffffff" style={{ paddingHorizontal: 4 }} />
+                    <Text style={{ color: '#ffffff', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: 'medium', textAlign: 'center', paddingHorizontal: 4 }}>Sign up with email</Text>
                 </Pressable>
-                <Pressable style={{ padding: 3, margin: 3 }} onPress={() => navigation.navigate('login')}>
-                    <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '500', textAlign: 'center' }}>I already have an account </Text>
+                <Pressable style={{ padding: 3, margin: 3 }} onPress={() => setviewlogin(true)}>
+                    <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontSize: RFValue(12), fontWeight: '500', textAlign: 'center' }}>I already have an account </Text>
                 </Pressable>
             </View>
             <View style={styles.box_4}>
-                <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontWeight: '400', fontSize: RFValue(12), textAlign: 'center', padding: 2, margin: 2 }}>By signing up, you agree to the Terms and Conditions and the Privacy Policy of Smart Study</Text>
+                <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontWeight: '400', fontSize: RFValue(12), textAlign: 'center', padding: 2, margin: 2 }}>By signing up, you agree to the <Text style={{ color: '#2148A5' }}>Terms and Conditions </Text>and the <Text style={{ color: '#2148A5' }}>Privacy Policy</Text> of Smart Study</Text>
             </View>
         </SafeAreaView>
     )
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
         height: width * 0.5,
     },
     google_image: {
-        width: 40,
-        height: 40,
+        width: 30,
+        height: 30,
     },
     cursor: {
         fontSize: 32,
@@ -163,7 +163,12 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(83, 83, 83, 0.34)',
         borderRadius: 20,
         marginVertical: 8,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        shadowColor: 'black',
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 3,
+        elevation: 3,
     },
     email_login: {
         marginVertical: 8,

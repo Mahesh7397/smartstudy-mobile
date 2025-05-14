@@ -7,12 +7,12 @@
     <list default="true" id="7281705b-7af7-4196-906f-acddcee79253" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/maheshwaran777/smartstudy/MainApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/maheshwaran777/smartstudy/MainApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/context/AccountContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/context/AccountContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Modal Pages/Signup/Email.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Modal Pages/Signup/Email.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Modal Pages/Signup/Password.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Modal Pages/Signup/Password.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Themes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Themes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/context/AccountContext.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/context/SupplayContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/context/SupplayContext.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/StartScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StartScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/SignupScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SignupScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/StartingScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/StartingScreen.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +41,11 @@
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;ToolWindow.Running Devices.ShowToolbar&quot;: &quot;false&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.android.tools.idea.streaming.emulator.frame.visible&quot;: &quot;false&quot;,
+    &quot;com.android.tools.idea.streaming.zoom.toolbar.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }

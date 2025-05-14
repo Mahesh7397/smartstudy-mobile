@@ -5,10 +5,12 @@ const SupplayContext=createContext()
 
 export const SupplayProvider=({Children})=>{
 
-    const [add,setadd]=useState({})
-
+    const [user,setuser]=useState({})
+     //loading
+     const [isloading,setisloading]=useState(true)
+ 
    return(
-       <SupplayContext.Provider value={{ add , setadd}}>
+       <SupplayContext.Provider value={{user,isloading}}>
         {Children}
        </SupplayContext.Provider>
    )
