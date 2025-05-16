@@ -10,10 +10,10 @@ export default function App() {
   return (
     <ThemeProvider>
       <FontsProvider>
-
+        <SupplayProvider>
           <StatusBar style='auto' />
             <Main />
-
+        </SupplayProvider>
       </FontsProvider>
     </ThemeProvider>
   );

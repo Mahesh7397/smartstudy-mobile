@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useThemescontext } from '../context/ThemeContext'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import StartingScreen from '../screens/StartingScreen'
-import LoginScreen from '../screens/LoginScreen'
-import SignupScreen from '../screens/SignupScreen'
 import { Alert, Modal, TouchableWithoutFeedback, View } from 'react-native'
 import Email from '../components/Modal Pages/Signup/Email'
-import { NavigationContainer, NavigationIndependentTree } from '@react-navigation/native'
 import { enableScreens } from 'react-native-screens'
 import Password from '../components/Modal Pages/Signup/Password'
 enableScreens()
@@ -19,51 +15,59 @@ const Stack = createNativeStackNavigator()
 const StartScreen = () => {
 
   const [viewsignup, setviewsignup] = useState(false)
-  const [Viewemail,setViewemail]=useState(false)
-  const [viewpassword,setviewpassword]=useState(false)
-  const [disable,setdisable]=useState(false)
-  const [viewlogin,setviewlogin]=useState(false)
-  const [Viewforget,setViewforget]=useState(false)
+  const [Viewemail, setViewemail] = useState(false)
+  const [viewpassword, setviewpassword] = useState(false)
+  const [disable, setdisable] = useState(false)
+  const [viewlogin, setviewlogin] = useState(false)
+  const [Viewforget, setViewforget] = useState(false)
 
-  const [email,setemail]=useState("")
-  const [password,setpassword]=useState("")
+  const [email, setemail] = useState("")
+  const [password, setpassword] = useState("")
 
-  const Signupwithemail=async()=>{
-     auth().createUserWithEmailAndPassword(email,password).then(()=>{
-        Alert.alert('User created')
-        setemail("")
-        setpassword("")
-        setviewpassword(false)
-        setviewlogin(true)
-     }).catch((error)=>{
+  const Signupwithemail = async () => {
+    auth().createUserWithEmailAndPassword(email, password).then(() => {
+      Alert.alert('Sign Up', 'Successfully User Created', [
+        {
+          text: 'Ok',
+          onPress: () => {
+            setemail("")
+            setpassword("")
+            setviewpassword(false)
+            setviewlogin(true)
+          }
+        }
+      ])
+
+    }).catch((error) => {
       console.log(error)
-     })
+      Alert.alert(error.nativeErrorMessage)
+    })
   }
 
 
-  useEffect(()=>{
-    console.log(email,email?.includes("@gmail.com"))
-     if(email?.includes('@gmail.com')){
+  useEffect(() => {
+    console.log(email, email?.includes("@gmail.com"))
+    if (email?.includes('@gmail.com')) {
       setdisable(false)
-     }
-     else{
+    }
+    else {
       setdisable(true)
-     }
-  },[email])
+    }
+  }, [email])
 
 
   return (
     <View style={{ flex: 1 }}>
-      <StartingScreen view={viewsignup} setview={()=>{setviewsignup(true);setViewemail(true)}} setviewlogin={setviewlogin}/>
-          <Email modalview={viewsignup} setnodalview={setviewsignup} emailview={Viewemail} setemailview={setViewemail} Email={email} setEmail={setemail}  disable={disable} setviewpassword={setviewpassword} setlogin={setviewlogin}/>
-          <Password passwordview={viewpassword} setPasswordview={setviewpassword}
-          setemail={setViewemail} disable={disable}
-          password={password}
-          setpassword={setpassword}
-          onsignup={Signupwithemail}
-          />
-          <Login viewlogin={viewlogin} setviewlogin={setviewlogin} setviewforget={setViewforget}/>
-          <ForgetPassword viewforget={Viewforget} setviewforget={setViewforget}/>
+      <StartingScreen view={viewsignup} setview={() => { setviewsignup(true); setViewemail(true) }} setviewlogin={setviewlogin} />
+      <Email modalview={viewsignup} setnodalview={setviewsignup} emailview={Viewemail} setemailview={setViewemail} Email={email} setEmail={setemail} disable={disable} setviewpassword={setviewpassword} setlogin={setviewlogin} />
+      <Password passwordview={viewpassword} setPasswordview={setviewpassword}
+        setemail={setViewemail} disable={disable}
+        password={password}
+        setpassword={setpassword}
+        onsignup={Signupwithemail}
+      />
+      <Login viewlogin={viewlogin} setviewlogin={setviewlogin} setviewforget={setViewforget} />
+      <ForgetPassword viewforget={Viewforget} setviewforget={setViewforget} />
     </View>
   )
 }

@@ -7,12 +7,14 @@ import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { GoogleAuthProvider, getAuth, signInWithCredential } from '@react-native-firebase/auth';
+import { useSupplayContext } from '../context/SupplayContext';
 
 
 const { width } = Dimensions.get('window');
 
 
 const StartingScreen = ({ view, setview, setviewlogin }) => {
+    const { StoreData }=useSupplayContext()
 
     const { theme } = useThemescontext()
     const typedText = useTypewriter(
@@ -34,7 +36,8 @@ const StartingScreen = ({ view, setview, setviewlogin }) => {
                 throw new Error('No ID token found');
             }
             console.log(idToken)
-            console.log(signInResult.data)
+            console.log(signInResult.data.user)
+            StoreData(signInResult.data.user)
             const googleCredential = GoogleAuthProvider.credential(signInResult.data.idToken);
             return signInWithCredential(getAuth(), googleCredential);
         }
@@ -80,7 +83,7 @@ const StartingScreen = ({ view, setview, setviewlogin }) => {
             </View>
             <View style={styles.box_2}>
                 <Image source={require('../assets/images/ghost.png')} style={styles.ghost_image} resizeMode='cover' />
-                <View style={{ width: '40%', height: 14, backgroundColor: '#CCF0FF', borderRadius: '100%' }} />
+                <View style={{ width: '40%', height: 14, backgroundColor: theme.dark?'#162665':'#CCF0FF', borderRadius: '100%' }} />
                 <Text style={{ color: theme.colors.text, fontFamily: Fonts.poppins.Bold, fontSize: RFValue(18), width: '90%', textAlign: 'center' }}>All the Academic toolkit for learning success.</Text>
                 <Text style={{ color: '#0021FF', fontSize: RFValue(22), fontFamily: Fonts.poppins.Bold }}>{typedText} <Animated.Text style={[styles.cursor, { opacity: 0.5 }]}>|</Animated.Text></Text>
             </View>
@@ -90,11 +93,10 @@ const StartingScreen = ({ view, setview, setviewlogin }) => {
                     <Text style={{ color: '#000000', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: '800', textAlign: 'center', paddingHorizontal: 4 }}>Continue with Google</Text>
                 </Pressable>
                 <Pressable style={[styles.email_login, { borderColor: theme.colors.text }]} onPress={() => setview()}>
-                    <Fontisto name="email" size={20} color="#ffffff" style={{ paddingHorizontal: 4 }} />
                     <Text style={{ color: '#ffffff', fontFamily: Fonts.Roboto, fontSize: RFValue(14), fontWeight: 'medium', textAlign: 'center', paddingHorizontal: 4 }}>Sign up with email</Text>
                 </Pressable>
                 <Pressable style={{ padding: 3, margin: 3 }} onPress={() => setviewlogin(true)}>
-                    <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontSize: RFValue(12), fontWeight: '500', textAlign: 'center' }}>I already have an account </Text>
+                    <Text style={{ color: theme.colors.text, fontFamily: Fonts.Roboto, fontSize: RFValue(12), fontWeight: '500', textAlign: 'center' }}>I already have an account <Text style={{ color: '#2148A5' }}>Log in</Text></Text>
                 </Pressable>
             </View>
             <View style={styles.box_4}>

@@ -3,14 +3,22 @@ import React from 'react'
 import StartScreen from './navigation/StartScreen'
 import Loading from './components/Loading'
 import { useFontsContext } from './context/FontsContext'
+import { useSupplayContext } from './context/SupplayContext'
+import StackScreen from './navigation/StackScreen'
+import { useThemescontext } from './context/ThemeContext'
 
 const Main = () => {
 
   const {fontsloading}=useFontsContext()
+  const { user , isloading }=useSupplayContext()
+
+  const {theme}=useThemescontext()
 
   return (
-    <>{false?<Loading/>:<StartScreen/>}
-    </>
+    <View style={{flex:1,backgroundColor:theme.colors.background}}>{fontsloading & isloading?<Loading/>:
+     user!==null? <StackScreen/>:
+    <StartScreen/>}
+    </View>
   )
 }
 
