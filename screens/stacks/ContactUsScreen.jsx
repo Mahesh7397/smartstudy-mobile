@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useThemescontext } from '../../context/ThemeContext';
 
 const ContactUsScreen = () => {
   const handleCall = (number) => {
@@ -29,46 +30,31 @@ const ContactUsScreen = () => {
     Linking.openURL(url);
   };
 
+  const {theme}=useThemescontext()
+
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.header}>Contact Us</Text>
+    <ScrollView style={[styles.container,{backgroundColor:theme.colors.background}]}>
+      <Text style={[styles.header,{color:theme.colors.text}]}>Contact Us</Text>
 
-      <View style={styles.card}>
-        <View style={styles.row}>
-          <View style={styles.iconContainer}>
-            <Ionicons name="call-outline" size={28} color="#3B82F6" />
-          </View>
-          <View>
-            <Text style={styles.text}>
-              Our 24/7 customer service
-            </Text>
-            <TouchableOpacity onPress={() => handleCall('+916381181744')}>
-              <Text style={styles.link}>+91 6381181744</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleCall('+917397423635')}>
-              <Text style={styles.link}>+91 7397 423 635</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.iconContainer}>
+      <View style={[styles.card,{backgroundColor: theme.dark ? '#3A6678' : '#CCF0FF'}]}>
+        <View style={[styles.row,{backgroundColor: theme.dark ? '#3A6678' : '#CCF0FF'}]}>
+          <View style={[styles.iconContainer,{backgroundColor:theme.dark?theme.colors.Modal:"#e5f7ff"}]}>
             <MaterialCommunityIcons name="email-outline" size={28} color="#3B82F6" />
           </View>
           <View>
-            <Text style={styles.text}>Write us at</Text>
+            <Text style={[styles.text,{color:theme.colors.text}]}>Write us at</Text>
             <TouchableOpacity onPress={() => handleEmail('smartstudyproject2025@gmail.com')}>
-              <Text style={styles.link}>smartstudyproject2025@gmail.com</Text>
+              <Text style={[styles.link,{    color:theme.dark?'#':'#2563EB',}]}>smartstudyproject2025@gmail.com</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
 
-      <View style={styles.socialCard}>
-        <Text style={styles.subHeader}>Follow Us</Text>
+      <View style={[styles.socialCard,{backgroundColor:theme.dark?theme.colors.Modal:"#e5f7ff"}]}>
+        <Text style={[styles.subHeader,{color:theme.colors.text}]}>Follow Us</Text>
         <View style={styles.socialRow}>
           <TouchableOpacity
-            style={styles.socialIconBox}
+            style={[styles.socialIconBox,{backgroundColor: theme.dark ? '#3A6678' : '#CCF0FF'}]}
             onPress={() => openLink(socialLinks.youtube)}
           >
             <Image
@@ -77,7 +63,7 @@ const ContactUsScreen = () => {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.socialIconBox}
+            style={[styles.socialIconBox,{backgroundColor: theme.dark ? '#3A6678' : '#CCF0FF'}]}
             onPress={() => openLink(socialLinks.linkedin)}
           >
             <Image
@@ -86,7 +72,7 @@ const ContactUsScreen = () => {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.socialIconBox}
+            style={[styles.socialIconBox,{backgroundColor: theme.dark ? '#3A6678' : '#CCF0FF'}]}
             onPress={() => openLink(socialLinks.instagram)}
           >
             <Image
@@ -103,7 +89,6 @@ const ContactUsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eaf9fd',
     paddingTop: 60,
     paddingHorizontal: 20,
   },
@@ -118,7 +103,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   card: {
-    backgroundColor: '#d5f3ff',
     borderRadius: 20,
     padding: 15,
     marginBottom: 25,
@@ -135,8 +119,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 50,
     height: 50,
-    backgroundColor: '#b9eaff',
-    borderRadius: 25,
+    borderRadius:25,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 15,
@@ -147,22 +130,18 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   link: {
-    color: '#2563EB',
     fontWeight: '600',
     fontSize: 15,
     marginBottom: 3,
   },
   socialCard: {
-    backgroundColor: '#d5f3ff',
     borderRadius: 20,
     padding: 15,
   },
   socialRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   socialIconBox: {
-    backgroundColor: '#b9eaff',
     borderRadius: 15,
     padding: 10,
     marginHorizontal: 5,

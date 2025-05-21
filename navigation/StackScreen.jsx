@@ -219,9 +219,9 @@ const StackScreen = () => {
             </Modal>
             <Modal visible={isMenu} transparent={true} animationType='none' onRequestClose={() => setisMenu(false)}>
                 <Pressable style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, backgroundColor: 'rgba(23, 26, 31, 0.4)', zIndex: -1 }} onPress={() => { setisMenu(false) }} />
-                <View style={{ position: 'absolute', top: "5%", right: '10%', left: "40%", bottom: '55%', backgroundColor: theme.dark ? '' : '#B8D9E6', borderRadius: 15 ,alignItems:'center',justifyContent:'space-evenly'}}>
+                <View style={{ position: 'absolute', top: "5%", right: '10%', left: "40%", bottom: '55%', backgroundColor: theme.dark ? theme.colors.Modal : '#B8D9E6', borderRadius: 15 ,alignItems:'center',justifyContent:'space-evenly',paddingLeft:20}}>
                     <View style={{ width: '90%', height: '15%',justifyContent:'center' }}>
-                        <Text style={{ fontSize: 24, fontFamily: Fonts.Roboto, fontWeight: 'bold' }}>Menu</Text>
+                        <Text style={{ fontSize: 24, fontFamily: Fonts.Roboto, fontWeight: 'bold',color:theme.colors.text }}>Menu</Text>
                     </View>
                     <View style={{ width: '90%', height: '80%',justifyContent:'space-evenly'}}>
                         {Menuitem.map((item, index) => {
@@ -267,5 +267,5 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 2,
         elevation: 2,
-    },
+    }, 
 })

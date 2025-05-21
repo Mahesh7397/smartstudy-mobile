@@ -46,7 +46,7 @@ const FAQsScreen = () => {
       <Text style={[styles.header,{color:theme.colors.text}]}>FAQs</Text>
       <View style={[styles.card,{backgroundColor:theme.colors.Modal}]}>
         {faqData.map((item, index) => (
-          <View key={index}>
+          <View key={index} style={{width:'90%'}}>
             <View style={styles.row}>
               {item.icon}
               <View style={{ marginLeft: 10 }}>
@@ -78,12 +78,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   card: {
+    width:'100%',
     borderRadius: 20,
     padding: 15,
     shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowRadius: 5,
     elevation: 3,
+    justifyContent:'space-evenly',
+    alignItems:'center',
   },
   row: {
     flexDirection: 'row',

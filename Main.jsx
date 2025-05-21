@@ -6,6 +6,7 @@ import { useFontsContext } from './context/FontsContext'
 import { useSupplayContext } from './context/SupplayContext'
 import StackScreen from './navigation/StackScreen'
 import { useThemescontext } from './context/ThemeContext'
+import WelcomeScreen from './navigation/WelcomeScreen'
 
 const Main = () => {
 
@@ -16,8 +17,10 @@ const Main = () => {
 
   return (
     <View style={{flex:1,backgroundColor:theme.colors.background}}>{fontsloading & isloading?<Loading/>:
-     user!==null? <StackScreen/>:
-    <StartScreen/>}
+    //  user!==null? <StackScreen/>:
+    // <StartScreen/>
+    <WelcomeScreen/>
+    }
     </View>
   )
 }

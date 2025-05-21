@@ -40,7 +40,7 @@ const FeedBackScreen = () => {
       <Text style={[styles.subText, { color: theme.colors.text }]}>Tell us a bit about why you chose {rating}</Text>
 
       {/* Textarea */}
-      <View style={[styles.textAreaWrapper, { color: theme.dark ? '#3A6678' : '#CCF0FF' }]}>
+      <View style={[styles.textAreaWrapper, { color: theme.dark ? '#3A6678' : '#CCF0FF' ,backgroundColor: theme.dark ? '#3A6678' : '#CCF0FF'}]}>
         <TextInput
           placeholder="Your suggestions here..."
           placeholderTextColor={theme.colors.text}
@@ -57,7 +57,8 @@ const FeedBackScreen = () => {
 
       {/* Submit */}
       <TouchableOpacity style={styles.submitBtn}>
-        <Text style={styles.submitText}>Submit</Text>
+        <Text style={[styles.submitText,{color:'#ffffff'
+        }]}>Submit</Text>
       </TouchableOpacity>
 
       {/* Bottom tab nav would go here if using Tab.Navigator */}
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   },
   textAreaWrapper: {
     width: '100%',
-    borderRadius: 20,
+    borderRadius:20,
     padding: 15,
     height: width * 0.5,
     marginBottom: 20,

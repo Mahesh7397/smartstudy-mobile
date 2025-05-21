@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="7281705b-7af7-4196-906f-acddcee79253" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Main.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/StackScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StackScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Taps/HomeScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Taps/HomeScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/stacks/ContactUsScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/stacks/ContactUsScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/stacks/FAQsScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/stacks/FAQsScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/stacks/FeedBackScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/stacks/FeedBackScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/stacks/HelpScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/stacks/HelpScreen.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
