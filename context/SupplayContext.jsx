@@ -9,6 +9,9 @@ export const SupplayProvider = ({ children }) => {
     const [user, setuser] = useState(null)
     //loading
     const [isloading, setisloading] = useState(true)
+
+    //startpage
+      const [name,setname]=useState('')
     
 
     const StoreData=async(userdata)=>{
@@ -44,7 +47,7 @@ export const SupplayProvider = ({ children }) => {
     },[])
 
     return (
-        <SupplayContext.Provider value={{ user, isloading,StoreData
+        <SupplayContext.Provider value={{ user, isloading,StoreData,name,setname
         }}>
             {children}
         </SupplayContext.Provider>

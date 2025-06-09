@@ -5,12 +5,22 @@ import { useThemescontext } from '../../context/ThemeContext'
 import { useSupplayContext } from '../../context/SupplayContext'
 import { Fonts } from '../../constants/Fonts'
 import { Feature } from '../../constants/Fuatures'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import CalculatorScreen from '../stacks/CalculatorScreen'
+import NewsScreen from '../stacks/NewsScreen'
+import UploadScreen from '../stacks/UploadScreen'
+import FeedBackScreen from '../stacks/FeedBackScreen'
+import HelpScreen from '../stacks/HelpScreen'
+import NotificationScreen from '../stacks/NotificationScreen'
+import FAQsScreen from '../stacks/FAQsScreen'
+import ContactUsScreen from '../stacks/ContactUsScreen'
 
-const {width,height}=Dimensions.get('window')
+
+const { width, height } = Dimensions.get('window')
 
 const FeatureList = ({ item }) => {
 
-  const {theme} =useThemescontext()
+  const { theme } = useThemescontext()
   return (
     <View style={{
       width: '47%', height: 130, marginVertical: 20, margin: 2, backgroundColor: theme.dark ? '#101327' : '#CCF0FF', shadowColor: 'black',
@@ -20,34 +30,34 @@ const FeatureList = ({ item }) => {
       elevation: 6,
       borderRadius: 18
     }}>
-      <View style={{width:'100%',height:'60%',flexDirection:'row',alignItems:'center'}}>
-        <View style={{width:'40%',height:'100%',justifyContent:'center',alignItems:'center'}}>
-           <View style={{backgroundColor:'#00ADEF',width:45,height:45,borderRadius:'50%',justifyContent:'center',alignItems:'center'}}>
-              {item.icon}
-           </View>
+      <View style={{ width: '100%', height: '60%', flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ width: '40%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ backgroundColor: '#00ADEF', width: 45, height: 45, borderRadius: '50%', justifyContent: 'center', alignItems: 'center' }}>
+            {item.icon}
+          </View>
         </View>
         <View>
-        <Text style={{fontSize:18,fontFamily:Fonts.Roboto,fontWeight:'regular',color:theme.dark?'#ffffff':'#0582D2'}}>Smart</Text>
-        <Text style={{fontSize:18,fontFamily:Fonts.poppins.Bold,color:'#195EFF'}}>{item.title}</Text>
+          <Text style={{ fontSize: 18, fontFamily: Fonts.Roboto, fontWeight: 'regular', color: theme.dark ? '#ffffff' : '#0582D2' }}>Smart</Text>
+          <Text style={{ fontSize: 18, fontFamily: Fonts.poppins.Bold, color: '#195EFF' }}>{item.title}</Text>
         </View>
       </View>
-      <View style={{width:'100%',height:'40%',alignItems:'center'}}>
-        <Pressable style={{width:'60%',height:'80%',backgroundColor:'#184473',borderRadius:18,justifyContent:'center',alignItems:'center'}}>
-          <Text style={{fontSize:18,fontFamily:Fonts.Roboto,fontWeight:'bold',textAlign:'center',color:'#ffffff'}}>Explore</Text>
+      <View style={{ width: '100%', height: '40%', alignItems: 'center' }}>
+        <Pressable style={{ width: '60%', height: '80%', backgroundColor: '#184473', borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 18, fontFamily: Fonts.Roboto, fontWeight: 'bold', textAlign: 'center', color: '#ffffff' }}>Explore</Text>
         </Pressable>
       </View>
     </View>
   )
 }
 
-const HomeScreen = () => {
+const Home = () => {
 
   const { theme } = useThemescontext()
   const { user } = useSupplayContext()
 
   return (
     <ScrollView style={{ backgroundColor: theme.colors.background }} showsVerticalScrollIndicator={false}>
-      <View style={{ width: '95%', height: height*0.25, alignSelf: 'center', padding: 2, margin: 10, borderColor: 'black', flexDirection: 'row' }}>
+      <View style={{ width: '95%', height: height * 0.25, alignSelf: 'center', padding: 2, margin: 10, borderColor: 'black', flexDirection: 'row' }}>
         <View style={{ width: '50%', height: '100%', justifyContent: 'center', position: 'relative' }}>
           <Image source={require('../../assets/images/ghost.png')} style={{ width: '70%', height: '80%' }} />
           <View style={{ width: '70%', height: '10%', backgroundColor: theme.dark ? '#3A6678' : '#CCF0FF', borderRadius: '100%' }} />
@@ -61,7 +71,7 @@ const HomeScreen = () => {
         </View>
       </View>
       {/**Ads Space */}
-      <View style={{ width: '100%', height:height*0.35, justifyContent: 'space-around', alignItems: 'center' }}>
+      <View style={{ width: '100%', height: height * 0.35, justifyContent: 'space-around', alignItems: 'center' }}>
         <View style={{ width: '90%', height: '45%', backgroundColor: '#ffffff', borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
           <Text>Ads area</Text>
         </View>
@@ -92,7 +102,7 @@ const HomeScreen = () => {
             numColumns={2}
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             scrollEnabled={false}
-            renderItem={({ item }) =><FeatureList item={item}/>}
+            renderItem={({ item }) => <FeatureList item={item} />}
           />
         </View>
       </View>
@@ -100,10 +110,25 @@ const HomeScreen = () => {
   )
 }
 
+const Stack = createNativeStackNavigator()
+
+const HomeScreen = () => {
+
+  return (
+    <Stack.Navigator initialRouteName='Home' screenOptions={{
+      headerShown:false
+    }}>
+      <Stack.Screen name='Home' component={Home} />
+      <Stack.Screen name='calculator' component={CalculatorScreen}  />
+      <Stack.Screen name='news' component={NewsScreen}  />
+      <Stack.Screen name='upload' component={UploadScreen}  />
+      <Stack.Screen name='feedback' component={FeedBackScreen} />
+      <Stack.Screen name='help' component={HelpScreen} />
+      <Stack.Screen name='notify' component={NotificationScreen} />
+      <Stack.Screen name='faq' component={FAQsScreen} />
+      <Stack.Screen name='contact' component={ContactUsScreen} />
+    </Stack.Navigator>
+  )
+}
+
 export default HomeScreen
-
-const styles = StyleSheet.create({
-  container: {
-
-  },
-})

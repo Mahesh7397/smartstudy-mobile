@@ -16,6 +16,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { navigationRef } from '../hooks/navigationRef'
 import FAQsScreen from '../screens/stacks/FAQsScreen'
 import ContactUsScreen from '../screens/stacks/ContactUsScreen'
+import {Streaks,Menuitem } from '../constants/SteactMenu'
 
 const Stack = createNativeStackNavigator()
 
@@ -65,68 +66,11 @@ const StackScreen = () => {
     const [isEnabled, setIsEnabled] = useState(false);
     const [isMenu, setisMenu] = useState(false)
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
-    const Streaks = [
-        {
-            streak: true,
-            day: 'S'
-        },
-        {
-            streak: false,
-            day: 'M'
-        },
-        {
-            streak: false,
-            day: 'T'
-        },
-        {
-            streak: false,
-            day: 'W'
-        },
-        {
-            streak: false,
-            day: 'T'
-        },
-        {
-            streak: false,
-            day: 'F'
-        },
-        {
-            streak: false,
-            day: 'S'
-        }
-    ]
-
-    const Menuitem = [
-        {
-            title: 'Grade ninja',
-            path: 'calculator'
-        },
-        {
-            title: 'News bites',
-            path: 'news'
-        },
-        {
-            title: 'Uploads',
-            path: 'upload'
-        },
-        {
-            title: 'Feed back',
-            path: 'feedback'
-        },
-        {
-            title: 'Help desk',
-            path: 'help'
-        }
-    ]
     const { theme } = useThemescontext()
     return (
         <NavigationContainer ref={navigationRef}>
             <Stack.Navigator initialRouteName='main' screenOptions={{
-               headerShown:false
-            }}>
-                <Stack.Screen name='main' component={MainScreen} options={{
-                    headerShown:true,
+               headerShown:true,
                     headerStyle: {
                     backgroundColor: theme.colors.background,
                     height:60
@@ -135,16 +79,34 @@ const StackScreen = () => {
                 headerTitle: '',
                 headerRight: () => <HeaderRight setisMenu={setisMenu} />,
                 headerLeft: () => <HeaderLeft setstreakview={setstreakview} />,
-
+            }}>
+                <Stack.Screen name='main' component={MainScreen} options={{
+                    headerShown:true,
                 }}/>
-                <Stack.Screen name='calculator' component={CalculatorScreen}  />
-                <Stack.Screen name='news' component={NewsScreen} />
-                <Stack.Screen name='upload' component={UploadScreen} />
-                <Stack.Screen name='feedback' component={FeedBackScreen} />
-                <Stack.Screen name='help' component={HelpScreen} />
-                <Stack.Screen name='notify' component={NotificationScreen}/>
-                <Stack.Screen name='faq' component={FAQsScreen}/>
-                <Stack.Screen name='contact' component={ContactUsScreen}/>
+                {/* <Stack.Screen name='calculator' component={CalculatorScreen}  options={{
+                    headerShown:true,
+                }} />
+                <Stack.Screen name='news' component={NewsScreen}  options={{
+                    headerShown:true,
+                }}/>
+                <Stack.Screen name='upload' component={UploadScreen}  options={{
+                    headerShown:true,
+                }}/>
+                <Stack.Screen name='feedback' component={FeedBackScreen}  options={{
+                    headerShown:false,
+                }}/>
+                <Stack.Screen name='help' component={HelpScreen}  options={{
+                    headerShown:false,
+                }}/>
+                <Stack.Screen name='notify' component={NotificationScreen}  options={{
+                    headerShown:false,
+                }}/>
+                <Stack.Screen name='faq' component={FAQsScreen}  options={{
+                    headerShown:false,
+                }}/>
+                <Stack.Screen name='contact' component={ContactUsScreen}  options={{
+                    headerShown:false,
+                }}/> */}
             </Stack.Navigator>
             <Modal visible={streakview} animationType='none' onRequestClose={() => setstreakview(false)} transparent={true}>
                 <Pressable style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, backgroundColor: 'rgba(23, 26, 31, 0.4)', zIndex: -1 }} onPress={() => { setstreakview(false) }} />
@@ -227,7 +189,7 @@ const StackScreen = () => {
                         {Menuitem.map((item, index) => {
                             return (
                                 <Pressable key={index} onPress={() => {
-                                    navigationRef.navigate(item.path)
+                                    navigationRef.navigate("home", {screen: item.path,})
                                     setisMenu(false)
                                 }} style={{width:'100%',height:'18%',justifyContent:'center'}} >
                                     <Text style={{fontSize:18,fontFamily:Fonts.Roboto,fontWeight:'400',color:theme.colors.text}}>{item.title}</Text>

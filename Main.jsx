@@ -17,9 +17,11 @@ const Main = () => {
 
   return (
     <View style={{flex:1,backgroundColor:theme.colors.background}}>{fontsloading & isloading?<Loading/>:
-    //  user!==null? <StackScreen/>:
+    //  user!==null? 
+    <StackScreen/>
+    // :
     // <StartScreen/>
-    <WelcomeScreen/>
+    // <WelcomeScreen/>
     }
     </View>
   )

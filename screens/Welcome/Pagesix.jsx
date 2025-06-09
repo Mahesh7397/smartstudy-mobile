@@ -51,7 +51,7 @@ const Pagesix = ({ navigation }) => {
 
                 {/* Next Button */}
 
-                <TouchableOpacity style={[styles.button, { backgroundColor: theme.dark ? "#101327" : "#184473" }]} onPress={() => navigation.navigate('')}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: theme.dark ? "#101327" : "#184473" }]} onPress={() => navigation.navigate('1')}>
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
             </View>

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { createStaticNavigation, NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import OnboardingScreen from '../screens/Welcome/OnboardingScreen'
@@ -21,7 +21,7 @@ const Stack=createNativeStackNavigator()
 const WelcomeScreen = () => {
   return (
     <NavigationContainer>
-         <Stack.Navigator screenOptions={{
+         {/* <Stack.Navigator screenOptions={{
             headerShown:false
          }}>
             <Stack.Screen name='wellcome' component={OnboardingScreen}/>
@@ -37,7 +37,8 @@ const WelcomeScreen = () => {
             <Stack.Screen name='4' component={DegreeName}/>
             <Stack.Screen name='5' component={YearForm}/>
             <Stack.Screen name='6' component={SubmitForm}/>
-        </Stack.Navigator>   
+        </Stack.Navigator>    */}
+        <CollegeForm/>
     </NavigationContainer>
   )
 }
