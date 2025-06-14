@@ -1,5 +1,5 @@
-import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { BackHandler, Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
+import React, { useState,useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Percentage from './CalculationScreeens/Percentage'
 import GPA from './CalculationScreeens/GPA'
@@ -8,14 +8,16 @@ import { navigationRef } from '../../hooks/navigationRef'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { useThemescontext } from '../../context/ThemeContext';
 import {Fonts} from '../../constants/Fonts'
+import { useNavigation } from '@react-navigation/native'
 
 // const GradeStack=createNativeStackNavigator()
 const GradeStack=createMaterialTopTabNavigator()
 
 const {width,height}=Dimensions.get('screen')
 
-const CalculatorScreen = () => {
+const CalculatorScreen = (navigation) => {
   const {theme}=useThemescontext()
+  
   return (
     <>
     <View style={{width:'100%',height:'40',justifyContent:'center',alignItems:'center',backgroundColor:theme.colors.background}}>

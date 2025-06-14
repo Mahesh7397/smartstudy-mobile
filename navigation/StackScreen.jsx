@@ -1,24 +1,17 @@
-import { Button, Image, Modal, Pressable, StyleSheet, Text, View, Switch ,TouchableOpacity} from 'react-native'
-import React, { useState } from 'react'
+import { Button, Image, Pressable, StyleSheet, Text,Modal, View, Switch ,TouchableOpacity,Animated, Dimensions} from 'react-native'
+import React, {  useRef,useState } from 'react'
 import { createStaticNavigation, NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import MainScreen from './MainScreen'
-import CalculatorScreen from '../screens/stacks/CalculatorScreen'
-import NewsScreen from '../screens/stacks/NewsScreen'
-import UploadScreen from '../screens/stacks/UploadScreen'
-import FeedBackScreen from '../screens/stacks/FeedBackScreen'
-import HelpScreen from '../screens/stacks/HelpScreen'
-import NotificationScreen from '../screens/stacks/NotificationScreen'
 import { useThemescontext } from '../context/ThemeContext'
 import { Fonts } from '../constants/Fonts'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { navigationRef } from '../hooks/navigationRef'
-import FAQsScreen from '../screens/stacks/FAQsScreen'
-import ContactUsScreen from '../screens/stacks/ContactUsScreen'
 import {Streaks,Menuitem } from '../constants/SteactMenu'
 
 const Stack = createNativeStackNavigator()
+const {height,width}=Dimensions.get('window')
 
 const HeaderLeft = ({ setstreakview }) => {
     const { theme } = useThemescontext()
@@ -50,9 +43,9 @@ const HeaderRight = ({ setisMenu }) => {
                     borderRadius: '50%'
                 }} />}
             </Pressable>
-            <Pressable onPress={() => {
-                setisMenu(true)
-            }}>
+            <Pressable onPress={
+                ()=>setisMenu()
+            }>
                 <MaterialCommunityIcons name="menu" size={38} color={theme.colors.text} />
             </Pressable>
         </View>
@@ -67,6 +60,26 @@ const StackScreen = () => {
     const [isMenu, setisMenu] = useState(false)
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const { theme } = useThemescontext()
+
+    const translateX = useRef(new Animated.Value(width)).current;
+
+  const openModal = () => {
+    setisMenu(true);
+    Animated.timing(translateX, {
+      toValue: width/2.5,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const closeModal = () => {
+    Animated.timing(translateX, {
+      toValue: width,
+      duration: 300,
+      useNativeDriver: true,
+    }).start(() => setisMenu(false));
+  };
+
     return (
         <NavigationContainer ref={navigationRef}>
             <Stack.Navigator initialRouteName='main' screenOptions={{
@@ -77,38 +90,14 @@ const StackScreen = () => {
                 },
                 headerShadowVisible: false,
                 headerTitle: '',
-                headerRight: () => <HeaderRight setisMenu={setisMenu} />,
+                headerRight: () => <HeaderRight setisMenu={openModal} />,
                 headerLeft: () => <HeaderLeft setstreakview={setstreakview} />,
             }}>
                 <Stack.Screen name='main' component={MainScreen} options={{
                     headerShown:true,
                 }}/>
-                {/* <Stack.Screen name='calculator' component={CalculatorScreen}  options={{
-                    headerShown:true,
-                }} />
-                <Stack.Screen name='news' component={NewsScreen}  options={{
-                    headerShown:true,
-                }}/>
-                <Stack.Screen name='upload' component={UploadScreen}  options={{
-                    headerShown:true,
-                }}/>
-                <Stack.Screen name='feedback' component={FeedBackScreen}  options={{
-                    headerShown:false,
-                }}/>
-                <Stack.Screen name='help' component={HelpScreen}  options={{
-                    headerShown:false,
-                }}/>
-                <Stack.Screen name='notify' component={NotificationScreen}  options={{
-                    headerShown:false,
-                }}/>
-                <Stack.Screen name='faq' component={FAQsScreen}  options={{
-                    headerShown:false,
-                }}/>
-                <Stack.Screen name='contact' component={ContactUsScreen}  options={{
-                    headerShown:false,
-                }}/> */}
             </Stack.Navigator>
-            <Modal visible={streakview} animationType='none' onRequestClose={() => setstreakview(false)} transparent={true}>
+            <Modal visible={streakview}  onRequestClose={() => setstreakview(false)} transparent={true}>
                 <Pressable style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, backgroundColor: 'rgba(23, 26, 31, 0.4)', zIndex: -1 }} onPress={() => { setstreakview(false) }} />
                 <View style={{ position: 'absolute', top: '20%', bottom: '20%', right: '10%', left: '10%', backgroundColor: theme.dark ? "" : "#ffffff", borderRadius: 18, alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <View style={{ width: '95%', height: '30%' }}>
@@ -179,9 +168,9 @@ const StackScreen = () => {
                     </View>
                 </View>
             </Modal>
-            <Modal visible={isMenu} transparent={true} animationType='none' onRequestClose={() => setisMenu(false)}>
-                <Pressable style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, backgroundColor: 'rgba(23, 26, 31, 0.4)', zIndex: -1 }} onPress={() => { setisMenu(false) }} />
-                <View style={{ position: 'absolute', top: "5%", right: '10%', left: "40%", bottom: '55%', backgroundColor: theme.dark ? theme.colors.Modal : '#B8D9E6', borderRadius: 15 ,alignItems:'center',justifyContent:'space-evenly',paddingLeft:20}}>
+            <Modal visible={isMenu} transparent={true}  onRequestClose={() => closeModal()}>
+                <Pressable style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, backgroundColor: 'rgba(23, 26, 31, 0.4)', zIndex: -1 }} onPress={() => closeModal()} />
+                <Animated.View style={[{ width:'80%' ,backgroundColor: theme.dark ? theme.colors.Modal : '#B8D9E6', borderRadius: 15 ,alignItems:'center',justifyContent:'space-evenly',paddingLeft:20},{transform: [{ translateX }]}]}>
                     <View style={{ width: '90%', height: '15%',justifyContent:'center' }}>
                         <Text style={{ fontSize: 24, fontFamily: Fonts.Roboto, fontWeight: 'bold',color:theme.colors.text }}>Menu</Text>
                     </View>
@@ -197,7 +186,7 @@ const StackScreen = () => {
                             )
                         })}
                     </View>
-                </View>
+                </Animated.View>
             </Modal>
         </NavigationContainer>
     )

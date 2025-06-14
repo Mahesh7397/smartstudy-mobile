@@ -6,7 +6,10 @@ export const lightTheme = {
     primary: '#0582D2',
     secondary:"#2148A5",
     Modal:'#FFFFFF',
-    stock:'#BCC1CA'
+    stock:'#BCC1CA',
+    Navbar:'#B2E9FF',
+    Focus:'#97D0FF',
+    ActIcon:'#005BFF',
   },
 };
 
@@ -18,6 +21,9 @@ export const darkTheme = {
     primary: '#0582D2',
     secondary:"#2148A5",
     Modal:'#323233',
-    stock:'#BCC1CA'
+    stock:'#BCC1CA',
+    Navbar:'#090B16',
+    Focus:'#4A89EB',
+    ActIcon:'#BCC1CA',
   },
 };
