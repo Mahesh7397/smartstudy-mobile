@@ -14,6 +14,7 @@ import HelpScreen from '../stacks/HelpScreen'
 import NotificationScreen from '../stacks/NotificationScreen'
 import FAQsScreen from '../stacks/FAQsScreen'
 import ContactUsScreen from '../stacks/ContactUsScreen'
+import { getCurrentRouteName, navigationRef } from '../../hooks/navigationRef'
 
 
 const { width, height } = Dimensions.get('window')
@@ -112,23 +113,23 @@ const Home = () => {
 
 const Stack = createNativeStackNavigator()
 
-const HomeScreen = () => {
+// const HomeScreen = () => {
+//   return (
+//     <Stack.Navigator initialRouteName='home'  screenOptions={{
+//       headerShown:false,
+      
+//     }}>
+//       <Stack.Screen name='home' component={Home} />
+//       <Stack.Screen name='calculator' component={CalculatorScreen}  />
+//       <Stack.Screen name='news' component={NewsScreen}  />
+//       <Stack.Screen name='upload' component={UploadScreen}  />
+//       <Stack.Screen name='feedback' component={FeedBackScreen} />
+//       <Stack.Screen name='help' component={HelpScreen} />
+//       <Stack.Screen name='notify' component={NotificationScreen} />
+//       <Stack.Screen name='faq' component={FAQsScreen} />
+//       <Stack.Screen name='contact' component={ContactUsScreen} />
+//     </Stack.Navigator>
+//   )
+// }
 
-  return (
-    <Stack.Navigator initialRouteName='home' screenOptions={{
-      headerShown:false
-    }}>
-      <Stack.Screen name='home' component={Home} />
-      <Stack.Screen name='calculator' component={CalculatorScreen}  />
-      <Stack.Screen name='news' component={NewsScreen}  />
-      <Stack.Screen name='upload' component={UploadScreen}  />
-      <Stack.Screen name='feedback' component={FeedBackScreen} />
-      <Stack.Screen name='help' component={HelpScreen} />
-      <Stack.Screen name='notify' component={NotificationScreen} />
-      <Stack.Screen name='faq' component={FAQsScreen} />
-      <Stack.Screen name='contact' component={ContactUsScreen} />
-    </Stack.Navigator>
-  )
-}
-
-export default HomeScreen
+export default Home

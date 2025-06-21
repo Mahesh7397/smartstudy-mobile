@@ -1,18 +1,23 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { createContext, useContext, useState } from "react"
+import { Dimensions } from "react-native"
 
 
 const SupplayContext = createContext()
 
+const {width,height}=Dimensions.get("window")
+
 export const SupplayProvider = ({ children }) => {
 
     const [user, setuser] = useState(null)
+    const [Tabindex,setTabindex]=useState(null)
     //loading
     const [isloading, setisloading] = useState(true)
 
     //startpage
       const [name,setname]=useState('')
-    
+
+      const scaleFont = (size) => (width / 390) * size; 
 
     const StoreData=async(userdata)=>{
         setisloading(true)
@@ -47,8 +52,8 @@ export const SupplayProvider = ({ children }) => {
     },[])
 
     return (
-        <SupplayContext.Provider value={{ user, isloading,StoreData,name,setname
-        }}>
+        <SupplayContext.Provider value={{ user, isloading,StoreData,name,setname,setTabindex,Tabindex
+        ,scaleFont}}>
             {children}
         </SupplayContext.Provider>
     )

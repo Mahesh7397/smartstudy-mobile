@@ -18,6 +18,7 @@ import Animated, {
   withTiming,
   withSpring,
 } from 'react-native-reanimated';
+import { useSupplayContext } from '../context/SupplayContext'
 
 const { width, height } = Dimensions.get('window')
 const TAB_WIDTH = (width-40)/ 5;
@@ -26,6 +27,7 @@ const Tab = createBottomTabNavigator()
 const CousomTabbar=({ state, descriptors, navigation })=>{
   const { theme } = useThemescontext()
   const { buildHref } =useLinkBuilder();
+  const { setTabindex } =useSupplayContext()
 
   const [dimensions,setdimensions]=useState({height:20,width:100})
   
@@ -49,6 +51,7 @@ const CousomTabbar=({ state, descriptors, navigation })=>{
  
   useEffect(()=>{
       console.log(state.index)
+      setTabindex(state.index)
       tabPositionX.value=withSpring(buttonWidth * state.index,{duration:1500})
   },[state.index])
 
@@ -128,12 +131,12 @@ const MainScreen = () => {
   const { theme } = useThemescontext()
 
   return (
-      <Tab.Navigator initialRouteName='home'
+      <Tab.Navigator initialRouteName='Home'
        tabBar={(props) => <CousomTabbar {...props} />}
       screenOptions={{
         headerShown: false,
       }} >
-        <Tab.Screen name='home'
+        <Tab.Screen name='Home'
           component={HomeScreen}
           options={{
             tabBarIcon: ({ focused, color }) =>
